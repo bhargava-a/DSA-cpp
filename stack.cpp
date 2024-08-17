@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 #define n 5
 
@@ -7,53 +8,53 @@ int top = -1;
 
 void push() {
     if (top == (n - 1)) {
-        printf("Stack overflow\n");
+        cout<<"Stack overflow"<<endl;
     } else {
         top++;
-        printf("Enter the number to be inserted : ");
-        scanf("%d", &sta[top]);
+        cout<<"Enter the number to be inserted : ";
+        cin>>sta[top];
     }
 }
 
 void pop() {
     if (top == -1) {
-        printf("Stack underflow\n");
+        cout<<"Stack underflow"<<endl;
     } else {
-        printf("The popped element is : %d\n", sta[top]);
+        cout<<"The popped element is : "<<sta[top]<<endl;
         top--;
     }
 }
 
 void ispeek() {
     if (top == -1) {
-        printf("Stack empty\n");
+        cout<<"Stack empty"<<endl;
     } else {
-        printf("The top element is : %d\n", sta[top]);
+        cout<<"The top element is : "<<sta[top]<<endl;
     }
 }
 
 void isem() {
     if (top == -1) {
-        printf("Stack is empty\n");
+        cout<<"Stack is empty"<<endl;
     } else {
-        printf("Stack is not empty\n");
+        cout<<"Stack is not empty"<<endl;
     }
 }
 
 void isfull() {
     if (top == (n - 1)) {
-        printf("Stack is full\n");
+        cout<<"Stack is full"<<endl;
     } else {
-        printf("Stack is not full\n");
+        cout<<"Stack is not full"<<endl;
     }
 }
 
 void display(){
     if(top==-1){
-        printf("Cannot display because stack is empty\n");
+        cout<<"Cannot display because stack is empty"<<endl;
     }else{
     for(int i = top; i>=0 ; i--) {
-        printf("%d\t",sta[i]);
+        cout<<sta[i]<<"\t";
     }
   }
 }
@@ -61,9 +62,9 @@ int main() {
     int choice;
   
     while (1) {
-        printf("\n1. Push\n2. Pop\n3. Is Peek\n4. Is Empty\n5. Is Full\n6.display\n7.Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+        cout<<"\n1. Push\n2. Pop\n3. Is Peek\n4. Is Empty\n5. Is Full\n6.display\n7.Exit"<<endl;
+        cout<<"Enter your choice: ";
+        cin>>choice;
 
         switch (choice) {
             case 1:push(); break;
@@ -73,7 +74,7 @@ int main() {
             case 5:isfull(); break;
             case 6:display(); break;
             case 7:exit(0);break;
-            default:printf("INVALID CHOICE\n");
+            default:cout<<"INVALID CHOICE"<<endl;
         }
     }
     return 0;
