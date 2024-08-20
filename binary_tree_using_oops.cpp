@@ -32,22 +32,34 @@ node *insert(node *root,node *newnode){
 }
 
 // Function to print pre-order elements
-node *preorder(node *root,int n){
-    
+void preorder(node *root){
+    if(root!=NULL){
+        cout<<root->data<<"\t";
+        preorder(root->left);
+        preorder(root->right);
+    }
 }
 
 // Function to print in-order elements
 void inorder(node *root){
-    
+    if(root!=NULL){
+        inorder(root->left);
+        cout<<root->data<<"\t";
+        inorder(root->right);
+    }
 }
 
 // Function to print post-order elements
 void postorder(node *root){
-    
+    if(root!=NULL){
+        postorder(root->left);
+        postorder(root->right);
+        cout<<root->data<<"\t";
+    }
 }
 
 // Function to search a node into the Binary tree
-node *dele(node *root,int key){
+node *search(node *root,int key){
 
 }
 
