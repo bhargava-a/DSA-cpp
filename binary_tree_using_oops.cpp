@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> // cd C++\DSA\DSA-cpp
 using namespace std;
 class node{
     public:
@@ -60,7 +60,14 @@ void postorder(node *root){
 
 // Function to search a node into the Binary tree
 node *search(node *root,int key){
-
+    if(root==NULL||root->data==key){
+        return root;
+    }
+    if(key<root->data){
+        return search(root->left,key);
+    }else{
+        return search(root->right,key);
+    }
 }
 
 // Function to delete a node from the Binary tree
@@ -86,11 +93,18 @@ int main() {
             case 3 :int key;
                     cout<<"Enter the node to be searched : ";
                     cin>>key;
-                    //search(root,key);break;
+                    node *found=NULL;
+                    found=search(root,key);
+                    if(found!=NULL){
+                        cout<<"Node found!!!!!woohooo"<<endl;
+                    }else{
+                        cout<<"Node not found"<<endl;
+                    }
+                    break;
 
-            case 4 :preorder();break;
-            case 5 :inorder();break;
-            case 6 :postorder();break;
+            case 4 :preorder(root);break;
+            case 5 :inorder(root);break;
+            case 6 :postorder(root);break;
             case 7 :exit(0);
             default:cout<<"Invalid Choice"<<endl;
         }
