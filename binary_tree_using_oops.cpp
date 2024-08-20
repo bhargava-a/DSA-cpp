@@ -19,6 +19,9 @@ node *insert(node *root,node *newnode){
     if(root==NULL){
         root=create();
     }
+    if(newnode->data < root->data){
+        
+    }
 }
 int main() {
     int ch;
