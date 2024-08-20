@@ -20,8 +20,12 @@ node *insert(node *root,node *newnode){
         root=create();
     }
     if(newnode->data < root->data){
-        
+        root->left=insert(root->left,newnode);
     }
+    if(newnode->data > root->data){
+        root->right=insert(root->right,newnode);
+    }
+    return root;
 }
 int main() {
     int ch;
@@ -30,8 +34,8 @@ int main() {
         cout<<"Enter your choice : ";
         cin>>ch;
         switch(ch){
-            case 1 : insert();break;
-            case 2 : delete();break;
+            case 1 : root=insert();break;
+            case 2 : dele();break;
             case 3 : search();break;
             case 4 : preorder();break;
             case 5 : inorder();break;
