@@ -15,7 +15,11 @@ node *create(){
     newnode->right=NULL;
     return newnode;
 }
-
+node *insert(node *root,node *newnode){
+    if(root==NULL){
+        root=create();
+    }
+}
 int main() {
     int ch;
     while(1){
