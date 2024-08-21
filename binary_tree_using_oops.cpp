@@ -77,8 +77,13 @@ node* findMin(node* root) {
      return root;
 }
 // Function to delete a node from the Binary tree
-node *dele(node *root,int n){
-    //lol
+node* dele(node* root, int n) {
+    if (root == NULL) {
+        return root; // Node not found
+    }
+    
+    
+    return root;
 }
 int main() {
     int ch;
