@@ -74,7 +74,7 @@ node* findMin(node* root) {
     while (root->left != NULL) {
         root = root->left;
     }
-    
+     return root;
 }
 // Function to delete a node from the Binary tree
 node *dele(node *root,int n){
