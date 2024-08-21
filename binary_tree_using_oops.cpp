@@ -82,7 +82,12 @@ node* dele(node* root, int n) {
         return root; // Node not found
     }
     
-    
+    // Traverse the tree to find the node to delete
+    if (n < root->data) {
+        root->left = dele(root->left, n);
+    } else if (n > root->data) {
+        root->right = dele(root->right, n);
+    } 
     return root;
 }
 int main() {
