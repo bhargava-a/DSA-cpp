@@ -87,8 +87,28 @@ node* dele(node* root, int n) {
         root->left = dele(root->left, n);
     } else if (n > root->data) {
         root->right = dele(root->right, n);
-    } 
-    return root;
+    } else {
+        // Node to be deleted found
+        
+        // Case 1: Node has no children (leaf node)
+        if (root->left == NULL && root->right == NULL) {
+            delete root;
+            return NULL;
+        }
+        
+        // Case 2: Node has one child
+        if (root->left == NULL) {
+            node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        if (root->right == NULL) {
+            node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        
+        turn root;
 }
 int main() {
     int ch;
