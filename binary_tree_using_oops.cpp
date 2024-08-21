@@ -72,7 +72,7 @@ node *search(node *root,int key){
 
 // Function to delete a node from the Binary tree
 node *dele(node *root,int n){
-    hell yeah
+    hell yeah,light weight
 }
 int main() {
     int ch;
