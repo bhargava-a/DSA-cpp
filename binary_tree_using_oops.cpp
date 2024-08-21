@@ -71,6 +71,9 @@ node *search(node *root,int key){
 }
 // Function to find the minimum value node in a subtree
 node* findMin(node* root) {
+    while (root->left != NULL) {
+        root = root->left;
+    }
     
 }
 // Function to delete a node from the Binary tree
