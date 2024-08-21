@@ -1,2 +1,2 @@
 # DSA-cpp
-c++ programs of linear data structues using oops.
+c++ programs of linear and non linear data structues using oops.
