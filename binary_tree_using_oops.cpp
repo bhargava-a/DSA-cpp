@@ -108,7 +108,17 @@ node* dele(node* root, int n) {
             return temp;
         }
         
-        turn root;
+        // Case 3: Node has two children
+        // Find the in-order successor (smallest in the right subtree)
+        node* temp = findMin(root->right);
+        
+        // Copy the in-order successor's content to this node
+        root->data = temp->data;
+        
+        // Delete the in-order successor
+        root->right = dele(root->right, temp->data);
+    }
+    return root;
 }
 int main() {
     int ch;
