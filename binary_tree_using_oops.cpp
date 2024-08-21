@@ -58,7 +58,7 @@ void postorder(node *root){
     }
 }
 
-// Function to search a node into the Binary tree
+// Function to search for a node in the Binary tree
 node *search(node *root,int key){
     if(root==NULL||root->data==key){
         return root;
