@@ -6,7 +6,7 @@ class node{
     int data;
     node *right;
 };
-node *root=NULL;;
+node *root=NULL;
 
 // Function to create a new node
 node *create(){
