@@ -3,7 +3,7 @@ using namespace std;
 #define n 5
 
 int queue[n];
-int front = -1, rear = -1;
+int front = -1, rear = -1;;
 
 void Enqueue_at_beginning() {
     if ((front == 0 && rear == n - 1) || (front == rear + 1)) {
