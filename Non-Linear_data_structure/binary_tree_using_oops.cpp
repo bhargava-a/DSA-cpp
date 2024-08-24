@@ -89,7 +89,7 @@ node *dele(node *root,int data){
     }else{
         //case 1:if node does not have any child nodes
         if(root->left==NULL&&root->right==NULL){
-            cout<<"Node "<<root->data<<"  deleted"<<endl;
+            cout << "Node " << root->data << " deleted" << endl;
             delete root;
             return NULL;
         }
@@ -101,7 +101,7 @@ node *dele(node *root,int data){
             return temp;
         }
         if(root->right==NULL){
-            cout<<"NOde "<<root->data<<"  deleted";
+            cout << "Node " << root->data << " deleted" << endl;
             node *temp=root->left;
             delete root;
             return temp;
@@ -124,27 +124,33 @@ int main() {
         cout<<"Enter your choice : ";
         cin>>ch;
         switch(ch){
-            case 1 :node *newnode=create();  //create a newnode 
-                    root=insert(root,newnode);  //Insert a newnode into the binary tree
-                    break;
+            case 1 :{
+                node *newnode=create();  //create a newnode 
+                root=insert(root,newnode);  //Insert a newnode into the binary tree
+                break;
+            }
 
-            case 2 :int n;
-                    cout<<"Enter the node : ";
-                    cin>>n;
-                    root=dele(root,n);
-                    break;
+            case 2 :{
+                int n;
+                cout<<"Enter the node : ";
+                cin>>n;
+                root=dele(root,n);
+                break;
+            }
 
-            case 3 :int key;
-                    cout<<"Enter the node to be searched : ";
-                    cin>>key;
-                    node *found=NULL;
-                    found=search(root,key);
-                    if(found!=NULL){
-                        cout<<"Node found!!!!!woohooo"<<endl;
-                    }else{
-                        cout<<"Node not found"<<endl;
-                    }
-                    break;
+            case 3 :{
+                int key;
+                cout<<"Enter the node to be searched : ";
+                cin>>key;
+                node *found=NULL;
+                found=search(root,key);
+                if(found!=NULL){
+                    cout<<"Node found!!!!!woohooo"<<endl;
+                }else{
+                    cout<<"Node not found"<<endl;
+                }
+                break;
+            }
 
             case 4 :preorder(root);break;
             case 5 :inorder(root);break;
