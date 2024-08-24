@@ -110,8 +110,12 @@ node *dele(node *root,int data){
         //find the inorder successor or pre-decessor of the node
         //(SMALLEST IN RIGHT SUBTREE OR BIGGEST IN LEFT SUBTREE)
         node *temp =findmin(root->right);
-
+        //changing root node value with inorder's successor
+        root->data=temp->data;
+        //deleting the inorder successor
+        root->right=dele(root->right,temp->data);
     }
+    return root;
 }
 int main() {
     int ch;
