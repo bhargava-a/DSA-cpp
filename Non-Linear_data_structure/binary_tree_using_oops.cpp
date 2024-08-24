@@ -69,57 +69,7 @@ node *search(node *root,int key){
         return search(root->right,key);
     }
 }
-// Function to find the minimum value node in a subtree
-node* findMin(node* root) {
-    while (root->left != NULL) {
-        root = root->left;
-    }
-     return root;
-}
-// Function to delete a node from the Binary tree
-node* dele(node* root, int n) {
-    if (root == NULL) {
-        return root; // Node not found
-    }
-    
-    // Traverse the tree to find the node to delete
-    if (n < root->data) {
-        root->left = dele(root->left, n);
-    } else if (n > root->data) {
-        root->right = dele(root->right, n);
-    } else {
-        // Node to be deleted found
-        
-        // Case 1: Node has no children (leaf node)
-        if (root->left == NULL && root->right == NULL) {
-            delete root;
-            return NULL;
-        }
-        
-        // Case 2: Node has one child
-        if (root->left == NULL) {
-            node* temp = root->right;
-            delete root;
-            return temp;
-        }
-        if (root->right == NULL) {
-            node* temp = root->left;
-            delete root;
-            return temp;
-        }
-        
-        // Case 3: Node has two children
-        // Find the in-order successor (smallest in the right subtree)
-        node* temp = findMin(root->right);
-        
-        // Copy the in-order successor's content to this node
-        root->data = temp->data;
-        
-        // Delete the in-order successor
-        root->right = dele(root->right, temp->data);
-    }
-    return root;
-}
+
 int main() {
     int ch;
     while(1){
