@@ -4,28 +4,30 @@
 #include<math.h>
 #include<limits.h>
 using namespace std;
+void change(int *x,int *y){
+    int temp=*x;
+    *x=*y;
+    *y=temp;
+}
 int main()
 {               
     int n;
     cout<<"Enter the size of array : ";
     cin>>n;
-    int a[n];
-    cout<<"Enter the array elements : ";
+    int arr[n];
+    cout<<"Enter array elements"<<endl;
     for(int i=0;i<n;i++){
-        cin>>a[i];
+        cin>>arr[i];
     }
-    int counter =1;
-    while(counter<n){
-        for(int i=0;i<n-counter;i++){
-            if(a[i]>a[i+1]){
-                int temp =a[i];
-                a[i]=a[i+1];
-                a[i+1]=temp;
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                change(&arr[j],&arr[j+1]);
             }
-        }counter++;
+        }
     }
-    for(int j=0;j<n;j++){
-    cout<<"\t"<<a[j];
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<"\t";
     }
     return 0;
 }
