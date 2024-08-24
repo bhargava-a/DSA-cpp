@@ -80,11 +80,23 @@ node *dele(node *root,int data){
     }else{
         //case 1:if node does not have any child nodes
         if(root->left==NULL&&root->right==NULL){
-            cout<<"Node "<<root->data<<"  deleted";
+            cout<<"Node "<<root->data<<"  deleted"<<endl;
             delete root;
             return NULL;
         }
-        
+        //case 2:if node has only 1 node,either in left subtree or right subtree
+        if(root->left==NULL){
+            cout<<"Node "<<root->data<<"  deleted"<<endl;
+            node *temp=root->left;
+            delete root;
+            return temp;
+        }
+        if(root->right==NULL){
+            cout<<"NOde "<<root->data<<"  deleted";
+            node *temp=root->right;
+            delete root;
+            return temp;
+        }
     }
 }
 int main() {
