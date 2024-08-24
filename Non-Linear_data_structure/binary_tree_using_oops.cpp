@@ -72,9 +72,9 @@ node *search(node *root,int key){
 
 // finding the min element in right subtree
 node *findmin(node *root){
-    while(root->left!=NULL){
-        root=root->left;
-    }
+    while(root->left!=NULL){    //while(root->right!=NULL){
+        root=root->left;        //root=root->left;
+    }                           //}
     return root;
 }
 //deleting the node 
@@ -109,11 +109,11 @@ node *dele(node *root,int data){
         //case 3:if node has 2 child nodes,then
         //find the inorder successor or pre-decessor of the node
         //(SMALLEST IN RIGHT SUBTREE OR BIGGEST IN LEFT SUBTREE)
-        node *temp =findmin(root->right);
+        node *temp =findmin(root->right);   //or node *temp =findmin(root->left);
         //changing root node value with inorder's successor
-        root->data=temp->data;
+        root->data=temp->data;     
         //deleting the inorder successor
-        root->right=dele(root->right,temp->data);
+        root->right=dele(root->right,temp->data);   //or root->left=dele(root->left,temp->data);
     }
     return root;
 }
@@ -151,7 +151,6 @@ int main() {
                 }
                 break;
             }
-
             case 4 :preorder(root);break;
             case 5 :inorder(root);break;
             case 6 :postorder(root);break;
