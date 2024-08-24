@@ -69,7 +69,17 @@ node *search(node *root,int key){
         return search(root->right,key);
     }
 }
-
+node *dele(node *root,int data){
+    if(root==NULL){
+        return root;
+    }
+    if(data<root->data){
+        root->left=dele(root->left,data);
+    }else if(data>root->data){
+        root->right=dele(root->left,data);
+    }
+    
+}
 int main() {
     int ch;
     while(1){
@@ -84,7 +94,7 @@ int main() {
             case 2 :int n;
                     cout<<"Enter the node : ";
                     cin>>n;
-                    dele(root,n);break;
+                    root=dele(root,n);break;
 
             case 3 :int key;
                     cout<<"Enter the node to be searched : ";
