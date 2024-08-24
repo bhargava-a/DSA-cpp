@@ -69,6 +69,15 @@ node *search(node *root,int key){
         return search(root->right,key);
     }
 }
+
+// finding the min element in right subtree
+node *findmin(node *root){
+    while(root->left!=NULL){
+        root=root->left;
+    }
+    return root;
+}
+//deleting the node 
 node *dele(node *root,int data){
     if(root==NULL){
         return root;
@@ -97,6 +106,10 @@ node *dele(node *root,int data){
             delete root;
             return temp;
         }
+        //case 3:if node has 2 child nodes,then
+        //find the inorder successor or pre-decessor of the node
+        //(SMALLEST IN RIGHT SUBTREE OR BIGGEST IN LEFT SUBTREE)
+        node *temp =findmin(root->right);
 
     }
 }
@@ -114,7 +127,8 @@ int main() {
             case 2 :int n;
                     cout<<"Enter the node : ";
                     cin>>n;
-                    root=dele(root,n);break;
+                    root=dele(root,n);
+                    break;
 
             case 3 :int key;
                     cout<<"Enter the node to be searched : ";
