@@ -77,8 +77,15 @@ node *dele(node *root,int data){
         root->left=dele(root->left,data);
     }else if(data>root->data){
         root->right=dele(root->left,data);
+    }else{
+        //case 1:if node does not have any child nodes
+        if(root->left==NULL&&root->right==NULL){
+            cout<<"Node "<<root->data<<"  deleted";
+            delete root;
+            return NULL;
+        }
+        
     }
-    
 }
 int main() {
     int ch;
