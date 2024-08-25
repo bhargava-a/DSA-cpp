@@ -5,5 +5,5 @@ c++ programs of linear and non linear data structues using oops.
 <br>
 cd C++\DSA-cpp\Non-linear_data_structure
 <br>
-cd C++\DSA-cpp\sorting_algo's
+cd C++\DSA-cpp\Sorting_algos
 
