@@ -151,9 +151,21 @@ int main() {
                 }
                 break;
             }
-            case 4 :preorder(root);break;
-            case 5 :inorder(root);break;
-            case 6 :postorder(root);break;
+            case 4:{
+                cout<<"Preorder : ";
+                preorder(root);
+                break;
+            }
+            case 5:{
+                cout<<"Inorder : ";
+                inorder(root);
+                break;
+            }
+            case 6:{
+                cout<<"Postorder : ";
+                postorder(root);
+                break;
+            }
             case 7 :exit(0);
             default:cout<<"Invalid Choice"<<endl;
         }
