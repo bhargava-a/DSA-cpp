@@ -32,7 +32,8 @@ void Quicksort(int arr[],int lowerbound,int upperbound){
 }
 int main(){
     int n;
-    
+    cout<<"Enter the size of array : ";
+    cin>>n;
     int a[n];
     cout<<"Enter array elements : ";
     for(int i=0;i<n;i++){
