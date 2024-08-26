@@ -1,6 +1,10 @@
 #include<iostream>
 using namespace std;
-
+void change(int *x,int *y){
+    int temp=*x;
+    *x=*y;
+    *y=temp;
+}
 int main(){
     int n;
     cout<<"Enter the array size : ";
@@ -10,5 +14,6 @@ int main(){
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
+
     return 0;
 }
