@@ -1,8 +1,13 @@
 #include<iostream>
 using namespace std;
+void change(int *x,int *y){
+    int temp=*x;
+    *x=*y;
+    *y=temp;
+}
 
 int partition(int arr[],int lowerbound,int upperbound){
-    int pivot=arr[lowerbound];
+    int pivot =arr[lowerbound];
     int start=lowerbound;
     int end=upperbound;
     while(start<end){
@@ -13,16 +18,13 @@ int partition(int arr[],int lowerbound,int upperbound){
             end--;
         }
         if(start<end){
-            int temp=arr[end];
-            arr[start]=arr[end];
-            arr[end]=temp;
+            change(&arr[end],&arr[start]);
         }
+        change(&arr[lowerbound],&arr[end]);
     }
-    int temp=arr[lowerbound];
-    arr[lowerbound]=arr[end];
-    arr[end]=temp;
     return end;
 }
+
 void Quicksort(int arr[],int lowerbound,int upperbound){
     if(lowerbound<upperbound){
         int loc=partition(arr,lowerbound,upperbound);
