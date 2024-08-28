@@ -4,7 +4,7 @@ int n;
 void merge(int arr[],int lb,int mid,int ub){
     int i=lb;
     int j=mid+1;
-    int k=ub;
+    int k=lb;
     int b[n];
     while(i<=mid&&j<=ub){
         if(arr[i]<=arr[j]){
