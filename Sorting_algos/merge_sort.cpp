@@ -27,8 +27,8 @@ void merge(int arr[],int lb,int mid,int ub){
             i++;k++;
         }
     }
-    for(int i=0;i<n;i++){
-        arr[i]=b[i];
+    for(int k=lb;k<=ub;k++){
+        arr[k]=b[k];
     }
 }
 void mergesort(int arr[],int lb,int ub){
@@ -49,5 +49,9 @@ int main(){
         cin>>arr[i];
     }
     mergesort(arr,0,n-1);
+    cout<<"Sorted array : ";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<"\t";
+    }
     return 0;
 }
