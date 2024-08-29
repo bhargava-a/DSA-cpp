@@ -23,15 +23,9 @@ int main (){
             case 3 :{
                 
             }
-            case 4 :{
-                
-            }
-            case 5 :{
-                
-            }
-            case 6 :{
-                
-            }
+            case 4 :preorder(root);break;
+            case 5 :inorder(root);break;
+            case 6 :postorder(root);break;
             case 7 :exit(0);break;
         }
     }
