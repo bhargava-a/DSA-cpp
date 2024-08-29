@@ -13,5 +13,27 @@ int main (){
         "\n7.Exit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
+        switch(choice){
+            case 1 :{
+                
+            }
+            case 2 :{
+                
+            }
+            case 3 :{
+                
+            }
+            case 4 :{
+                
+            }
+            case 5 :{
+                
+            }
+            case 6 :{
+                
+            }
+            case 7 :exit(0);break;
+        }
     }
+    
 }
