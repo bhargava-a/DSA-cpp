@@ -27,7 +27,8 @@ int main (){
             case 5 :inorder(root);break;
             case 6 :postorder(root);break;
             case 7 :exit(0);break;
+            default: cout<<"Invalid choice nigga"<<endl;
         }
     }
-    
+   return 0;
 }
