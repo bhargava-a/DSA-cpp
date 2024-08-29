@@ -11,5 +11,7 @@ int main (){
         "\n3.search\n4.pre-order"
         "\n5.In-order\n6.post-order"
         "\n7.Exit"<<endl;
+        cout<<"Enter your choice : ";
+        cin>>choice;
     }
 }
