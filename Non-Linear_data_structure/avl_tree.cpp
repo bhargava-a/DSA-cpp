@@ -1,9 +1,20 @@
 #include<iostream>
 using namespace std;
 class node{
+    public:
     node * left,*right;
     int data;
 }*root=NULL;
+
+node *create(){
+    node *newnode=new node();
+    cout<<"Enter the data : ";
+    cin>>newnode->data;
+    newnode->left=NULL;
+    newnode->right=NULL;
+    return newnode;
+}
+
 int main (){
     int choice;
     while(1){
@@ -15,6 +26,7 @@ int main (){
         cin>>choice;
         switch(choice){
             case 1 :{
+                node *newnode=create();
                 
             }
             case 2 :{
