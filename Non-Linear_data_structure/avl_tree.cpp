@@ -37,14 +37,18 @@ node *search(node *root,int key){
 
 void preorder(node *root){
     if(root!=NULL){
-        cout<<"root->data"<<"\t";
+        cout<<root->data<<"\t";
         preorder(root->left);
         preorder(root->right);
     }
 }
 
 void inorder(node *root){
-    
+    if(root!=NULL){
+        inorder(root->left);
+        cout<<root->data<<"\t";
+        inorder(root->right);
+    }
 }
 
 void postorder(node *root){
