@@ -15,6 +15,17 @@ node *create(){
     return newnode;
 }
 
+node *insert(node *root,node *newnode){
+    if(root=NULL){
+        return newnode;
+    }
+    if(newnode->data<root->data){
+        root->left=insert(root->left,newnode);
+    }else if(newnode->data>root->data){
+        root->right=insert(root->right,newnode);
+    }
+
+}
 int main (){
     int choice;
     while(1){
@@ -27,7 +38,8 @@ int main (){
         switch(choice){
             case 1 :{
                 node *newnode=create();
-                
+                root=insert(root,newnode);
+                break;
             }
             case 2 :{
                 
