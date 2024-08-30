@@ -24,7 +24,27 @@ node *insert(node *root,node *newnode){
     }else if(newnode->data>root->data){
         root->right=insert(root->right,newnode);
     }
+    return root;
+}
 
+node *del(node *root,int node){
+    return root;
+}
+
+node *search(node *root,int key){
+    return root;
+}
+
+void preorder(node *root){
+
+}
+
+void inorder(node *root){
+
+}
+
+void postorder(node *root){
+    
 }
 int main (){
     int choice;
@@ -42,10 +62,22 @@ int main (){
                 break;
             }
             case 2 :{
-                
+                int node;
+                cout<<"Enter the node : ";
+                cin>>node;
+                root=del(root,node);
             }
             case 3 :{
-                
+                int key;
+                cout<<"Enter the search node : ";
+                cin>>key;
+                node *found=NULL;
+                found=search(root,key);
+                if(found!=NULL){
+                    cout<<"Node found"<<endl;
+                }else{
+                    cout<<"Node not found"<<endl;
+                }
             }
             case 4 :preorder(root);break;
             case 5 :inorder(root);break;
