@@ -52,7 +52,11 @@ void inorder(node *root){
 }
 
 void postorder(node *root){
-
+    if(root!=NULL){
+        postorder(root->left);
+        postorder(root->right);
+        cout<<root->data<<"\t";
+    }
 }
 int main (){
     int choice;
