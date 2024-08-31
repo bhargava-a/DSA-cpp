@@ -24,7 +24,6 @@ void dis() {
         cout << "The list is empty." << endl;
         return;
     }
-
     temp = head;
     
     // Display the first student separately
@@ -175,9 +174,14 @@ void delete_at_loc(){
 int main(){
     int choice;
     while(1){
-        cout<<"\n\n1.insert at beginning\n2.insert at end\n3.insert at specific location"
-        "\n4.delete at beginning\n5.delete at end\n6.delete at specific location"
-        "\n7.display\n8.Exit"<<endl;
+        cout<<"\n\n1.insert at beginning"
+              "\n2.insert at end"
+              "\n3.insert at specific location"
+              "\n4.delete at beginning"
+              "\n5.delete at end"
+              "\n6.delete at specific location"
+              "\n7.display"
+              "\n8.Exit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice){
