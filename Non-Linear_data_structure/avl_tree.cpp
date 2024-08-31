@@ -16,7 +16,7 @@ node *create(){
 }
 
 node *insert(node *root,node *newnode){
-    if(root=NULL){
+    if(root==NULL){
         return newnode;
     }
     if(newnode->data<root->data){
@@ -124,6 +124,7 @@ int main (){
                 cout<<"Enter the node : ";
                 cin>>node;
                 root=del(root,node);
+                break;
             }
             case 3 :{
                 int key;
@@ -136,11 +137,24 @@ int main (){
                 }else{
                     cout<<"Node not found"<<endl;
                 }
+                break;
             }
-            case 4 :preorder(root);break;
-            case 5 :inorder(root);break;
-            case 6 :postorder(root);break;
-            case 7 :exit(0);break;
+            case 4:{
+                cout<<"Preorder : ";
+                preorder(root);
+                break;
+            }
+            case 5:{
+                cout<<"Inorder : ";
+                inorder(root);
+                break;
+            }
+            case 6:{
+                cout<<"Postorder : ";
+                postorder(root);
+                break;
+            }
+            case 7 :exit(0);
             default: cout<<"Invalid choice nigga"<<endl;
         }
     }
