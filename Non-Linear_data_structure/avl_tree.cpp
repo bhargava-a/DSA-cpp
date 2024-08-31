@@ -55,6 +55,10 @@ node *del(node *root,int Node){
             delete root;
             return temp;
         }
+        //case 3:with 2 child nodes
+        node *temp=findmin(root->right);
+        root->data=temp->data;
+        root->right=del(root->right,temp->data);
     }
     return root;
 }
