@@ -28,6 +28,22 @@ node *insert(node *root,node *newnode){
 }
 
 node *del(node *root,int node){
+    if(root==NULL){
+        return root;
+    }
+    if(node<root->data){
+        root->left=del(root->left,node);
+    }else if(node>root->data){
+        root->right=del(root->right,node);
+    }else{
+        //case 1: with no child nodes
+        if(root->left==NULL&&root->right==NULL){
+            cout<<"The deleted node : "<<root->data<<endl;
+            delete root;
+            return NULL;
+        }
+        
+    }
     return root;
 }
 
@@ -40,7 +56,6 @@ node *search(node *root,int key){
     }else{
         return search(root->right,key);
     }
-    return root;
 }
 
 void preorder(node *root){
