@@ -27,6 +27,13 @@ node *insert(node *root,node *newnode){
     return root;
 }
 
+node *findmin(node *root){
+    while(root->left!=NULL){
+        root=root->left;
+    }
+    return root;
+}
+
 node *del(node *root,int Node){
     if(root==NULL){
         return root;
