@@ -42,7 +42,19 @@ node *del(node *root,int node){
             delete root;
             return NULL;
         }
-        
+        //case 2:with 1 child node
+        if(root->left==NULL){
+            cout<<"The deleted node : "<<root->data<<endl;
+            node *temp=root->right;
+            delete root;
+            return temp;
+        }
+        if(root->right==NULL){
+            cout<<"The deleted node : "<<root->data<<endl;
+            node *temp=root->left;
+            delete root;
+            return temp;
+        }
     }
     return root;
 }
