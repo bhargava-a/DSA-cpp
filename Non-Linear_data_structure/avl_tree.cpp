@@ -27,14 +27,14 @@ node *insert(node *root,node *newnode){
     return root;
 }
 
-node *del(node *root,int node){
+node *del(node *root,int Node){
     if(root==NULL){
         return root;
     }
-    if(node<root->data){
-        root->left=del(root->left,node);
-    }else if(node>root->data){
-        root->right=del(root->right,node);
+    if(Node<root->data){
+        root->left=del(root->left,Node);
+    }else if(Node>root->data){
+        root->right=del(root->right,Node);
     }else{
         //case 1: with no child nodes
         if(root->left==NULL&&root->right==NULL){
