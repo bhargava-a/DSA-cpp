@@ -49,6 +49,12 @@ node* leftRotate(node* x) {
     // Return new root
     return y;
 }
+// Get the balance factor of node N
+int getBalance(node* N) {
+    if (N == NULL)
+        return 0;
+    return height(N->left) - height(N->right);
+}
 node *insert(node *root,node *newnode){
     if(root==NULL){
         return newnode;
