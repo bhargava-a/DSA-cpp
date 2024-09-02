@@ -137,7 +137,7 @@ node *del(node *root,int Node){
         root->right=del(root->right,temp->data);
     }
     return root;
-    ///HERE
+    
     // If the tree had only one node then return
     if (root == NULL)
         return root;
@@ -148,6 +148,19 @@ node *del(node *root,int Node){
     // 3. Get the balance factor of this node (to check whether
     //    this node became unbalanced)
     int balance = getBalance(root);
+    // If this node becomes unbalanced, then there are 4 cases
+
+    // Left Left Case
+    if (balance > 1 && getBalance(root->left) >= 0)
+        return rightRotate(root);
+
+    // Left Right Case
+    if (balance > 1 && getBalance(root->left) < 0) {
+        root->left = leftRotate(root->left);
+        return rightRotate(root);
+    }
+    ///HERE
+    
 }
 
 node *search(node *root,int key){
