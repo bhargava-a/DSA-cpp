@@ -95,7 +95,7 @@ node *insert(node *root,node *newnode){
     // Return the (unchanged) node pointer
     return node;
 }
-///HERE
+
 node *findmin(node *root){
     while(root->left!=NULL){
         root=root->left;
@@ -137,6 +137,17 @@ node *del(node *root,int Node){
         root->right=del(root->right,temp->data);
     }
     return root;
+    ///HERE
+    // If the tree had only one node then return
+    if (root == NULL)
+        return root;
+
+    // 2. Update height of the current node
+    root->height = 1 + max(height(root->left), height(root->right));
+
+    // 3. Get the balance factor of this node (to check whether
+    //    this node became unbalanced)
+    int balance = getBalance(root);
 }
 
 node *search(node *root,int key){
