@@ -65,8 +65,11 @@ node *insert(node *root,node *newnode){
         root->right=insert(root->right,newnode);
     }
     return root;
-}
+    // 2. Update height of this ancestor node
+    node->height = 1 + max(height(node->left), height(node->right));
 
+}
+///HERE
 node *findmin(node *root){
     while(root->left!=NULL){
         root=root->left;
