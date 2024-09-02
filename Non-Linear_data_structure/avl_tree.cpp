@@ -67,7 +67,9 @@ node *insert(node *root,node *newnode){
     return root;
     // 2. Update height of this ancestor node
     node->height = 1 + max(height(node->left), height(node->right));
-
+    // 3. Get the balance factor of this ancestor node to check whether
+    //    this node became unbalanced
+    int balance = getBalance(node);
 }
 ///HERE
 node *findmin(node *root){
