@@ -5,7 +5,12 @@ class node{
     node * left,*right;
     int data;
 }*root=NULL;
-
+// Function to get the height of the node
+int height(node* N) {
+    if (N == NULL)
+        return 0;
+    return N->height;
+}
 node *create(){
     node *newnode=new node();
     cout<<"Enter the data : ";
