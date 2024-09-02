@@ -19,7 +19,14 @@ node *create(){
     newnode->right=NULL;
     return newnode;
 }
+// Function to right rotate subtree rooted with y
+node* rightRotate(node* y) {
+    node* x = y->left;
+    node* T2 = x->right;
 
+    // Perform rotation
+    x->right = y;
+    y->left = T2;
 node *insert(node *root,node *newnode){
     if(root==NULL){
         return newnode;
