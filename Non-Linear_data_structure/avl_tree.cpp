@@ -136,7 +136,7 @@ node *del(node *root,int Node){
         root->data=temp->data;
         root->right=del(root->right,temp->data);
     }
-    return root;
+  
     
     // If the tree had only one node then return
     if (root == NULL)
@@ -160,7 +160,25 @@ node *del(node *root,int Node){
         return rightRotate(root);
     }
     ///HERE
-    
+    // Right Right Case
+    if (balance < -1 && getBalance(root->right) <= 0)
+        return leftRotate(root);
+
+    // Right Left Case
+    if (balance < -1 && getBalance(root->right) > 0) {
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+    // Right Right Case
+    if (balance < -1 && getBalance(root->right) <= 0)
+        return leftRotate(root);
+
+    // Right Left Case
+    if (balance < -1 && getBalance(root->right) > 0) {
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+      return root;
 }
 
 node *search(node *root,int key){
