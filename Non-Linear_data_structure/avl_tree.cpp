@@ -34,6 +34,14 @@ node* rightRotate(node* y) {
     // Return new root
     return x;
 }
+// Function to left rotate subtree rooted with x
+node* leftRotate(node* x) {
+    node* y = x->right;
+    node* T2 = y->left;
+
+    // Perform rotation
+    y->left = x;
+    x->right = T2;
 node *insert(node *root,node *newnode){
     if(root==NULL){
         return newnode;
