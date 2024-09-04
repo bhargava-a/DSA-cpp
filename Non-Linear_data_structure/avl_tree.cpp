@@ -18,6 +18,7 @@ node *create(){
     cin>>newnode->data;
     newnode->left=NULL;
     newnode->right=NULL;
+    newnode->height=1;
     return newnode;
 }
 // Function to right rotate subtree rooted with y
