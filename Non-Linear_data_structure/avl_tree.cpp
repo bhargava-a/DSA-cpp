@@ -4,6 +4,7 @@ class node{
     public:
     node * left,*right;
     int data;
+    int height;
 }*root=NULL;
 // Function to get the height of the node
 int height(node* N) {
