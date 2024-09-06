@@ -13,7 +13,7 @@ int height(node* N) {
     return N->height;
 }
 int getBalance(node* N) {
-    if (N == NULL)
+    if (N == NULL) 
         return 0;
     return height(N->left) - height(N->right);
 }
