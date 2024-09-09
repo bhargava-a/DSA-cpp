@@ -5,13 +5,23 @@ class node{
     public:
     int data;
     int height;
-    shared_ptr<node> left;   // Corrected: directly use shared_ptr
+    shared_ptr<node> left;  
     shared_ptr<node> right; 
 };
 shared_ptr<node> root=NULL;
 
+//funtion to create a node
+shared_ptr<node> create(){
+    shared_ptr<node> newnode = make_shared<node>();
+    cout<<"\nEnter the data : ";
+    cin>>newnode->data;
+    newnode->left=NULL;
+    newnode->right=NULL;
+    newnode->height=1;
+    return newnode;
+}
 // Function to print in-order elements
-void inorder(node *root){
+void inorder(shared_ptr<node> root){
     if(root!=NULL){
         inorder(root->left);
         cout<<root->data<<"\t";
@@ -20,7 +30,7 @@ void inorder(node *root){
 }
 
 // Function to print post-order elements
-void postorder(node *root){
+void postorder(shared_ptr<node> root){
     if(root!=NULL){
         postorder(root->left);
         postorder(root->right);
@@ -29,7 +39,7 @@ void postorder(node *root){
 }
 
 // Function to search for a node in the Binary tree
-node *search(node *root,int key){
+node *search(shared_ptr<node> root,int key){
     if(root==NULL||root->data==key){
         return root;
     }
@@ -47,7 +57,7 @@ int main() {
         cin>>ch;
         switch(ch){
             case 1 :{
-                node *newnode=create();  //create a newnode 
+                shared_ptr<node> newnode=create();  //create a newnode 
                 root=insert(root,newnode);  //Insert a newnode into the binary tree
                 break;
             }
