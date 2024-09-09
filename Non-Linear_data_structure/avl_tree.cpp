@@ -1,5 +1,15 @@
 #include<iostream>
 #include<memory>
+using namespace std;
+class node{
+    public:
+    int data;
+    int height;
+    shared_ptr<node> left;   // Corrected: directly use shared_ptr
+    shared_ptr<node> right; 
+};
+shared_ptr<node> root=NULL;
+
 // Function to print in-order elements
 void inorder(node *root){
     if(root!=NULL){
