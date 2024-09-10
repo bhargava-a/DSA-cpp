@@ -34,17 +34,19 @@ int getbalance(node *root){
     return getheight(root->left)-getheight(root->right);
 }
 // Function for left rotation
-node *left_rotation(node *y){
-     node* x = y->right;  // Corrected to y->right
-    node* t2 = x->left;
+node *left_rotation(node *x){
+    node *y=x->right;
+    node *T2=y->left;
 
-    x->right=y;
-    y->left=t2;
+    //performing rotation of nodes
+    y->left=x;
+    x->right=T2;
 
-    y->height=1+max(getheight(y->right),getheight(y->left));
-    x->height=1+max(getheight(x->right),getheight(x->left));
+    //Updating heights of root & rotated nodes which are x & y;
+    x->height=1 + max(getheight(x->left),getheight(x->right));
+    y->height=1 + max(getheight(y->left),getheight(y->right));
 
-    return x;
+    return y;
 }
 // Function to right rotation
 node *right_rotation(node *x){
