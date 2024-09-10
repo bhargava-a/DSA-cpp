@@ -59,7 +59,7 @@ node *right_rotation(node *y){
 
     //updating the heights of ROOT NODE and MID NODE 
     y->height=1+max(getheight(y->left),getheight(y->right));
-    x->height=1+max(getheight(x->Left),getheight(x->right));
+    x->height=1+max(getheight(x->left),getheight(x->right));
 
     return x;
 }
