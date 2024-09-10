@@ -75,28 +75,32 @@ node *insert(node *root,node *newnode){
     }else if(newnode->data > root->data){
         root->right=insert(root->right,newnode);
     }
-    root->height=1+max(getheight(root->left),getheight(root->right));
-    int bal_fac=getbalance(root);
-
-    //case 1 : Left Left case
-    if(bal_fac > 1 && (newnode->data < root->left->data)){
-        right_rotation(root);
-    }
-    //case 2 : Right Right case
-    if(bal_fac < -1 && newnode->data > root->right->data){
-        left_rotation(root);
-    }
-    //case 3 : left-right case
-    if(bal_fac > 1 && newnode->data > root->left->data){
-        root->left=left_rotation(root->left);
-        right_rotation(root);
-    } 
-    //case 4: right-left case
-    if( bal_fac < -1 && newnode->data < root->right->data){
-        root->right=right_rotation(root->right);
-        left_rotation(root);
-    }
     return root;
+
+    root->height=1+ max(getheight(root->left),getheight(root->right));
+    int balance_factor=getbalance(root);
+
+    //case 1: Left left rotation
+    if(balance_factor >1&& newnode->data < root->left->data){
+        return right_rotation(root);
+    }
+
+    //case 2: Right right rotation
+    if(balance_factor < -1&& newnode->data >root->right->data){
+        return left_rotation(root);
+    }
+
+    //case 3 : Left right rotation
+    if(balance_factor >1 && newnode->data > root->left->data){
+        root->left=left_rotation(root->left);
+        return right_rotation(root);
+    }
+
+    // case 4 : Right Left rotation
+    if(balance_factor < -1 && newnode->data < root->right->data){
+        root->right=right_rotation(root->right);
+        return left_rotation(root);
+    }
 }
 
 // Function to print pre-order elements
