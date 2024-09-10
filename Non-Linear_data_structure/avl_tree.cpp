@@ -42,24 +42,26 @@ node *left_rotation(node *x){
     y->left=x;
     x->right=T2;
 
-    //Updating heights of root & rotated nodes which are x & y;
+    //Updating heights of root & MID NODE nodes which are x & y;
     x->height=1 + max(getheight(x->left),getheight(x->right));
     y->height=1 + max(getheight(y->left),getheight(y->right));
 
     return y;
 }
 // Function to right rotation
-node *right_rotation(node *x){
-    node *y=x->right;
-    node *t2=y->left;
+node *right_rotation(node *y){
+    node *x=y->left;
+    node *T2=x->right;
 
-    y->left=x;
-    x->right=t2;
+    //Performing rotation of nodes
+    x->right=y;
+    y->left=T2;
 
-    x->height=1+max(getheight(x->left),getheight(x->right));
+    //updating the heights of ROOT NODE and MID NODE 
     y->height=1+max(getheight(y->left),getheight(y->right));
+    x->height=1+max(getheight(x->Left),getheight(x->right));
 
-    return y;
+    return x;
 }
 
 
