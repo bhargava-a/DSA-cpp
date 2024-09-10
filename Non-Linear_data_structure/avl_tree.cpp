@@ -74,8 +74,10 @@ node *insert(node *root,node *newnode){
         root->left=insert(root->left,newnode);
     }else if(newnode->data > root->data){
         root->right=insert(root->right,newnode);
+    } else {
+        // Duplicate data is not allowed in AVL Tree
+        return root;
     }
-    return root;
 
     root->height=1+ max(getheight(root->left),getheight(root->right));
     int balance_factor=getbalance(root);
