@@ -1,4 +1,5 @@
-#include <iostream> // cd C++\DSA-cpp
+#include <iostream> // cd C++\DSA-cpp\Non-Linear_data_structure
+#include <algorithm>
 using namespace std;
 class node{
     public:
@@ -103,6 +104,7 @@ node *insert(node *root,node *newnode){
         root->right=right_rotation(root->right);
         return left_rotation(root);
     }
+    return root;
 }
 
 // Function to print pre-order elements
