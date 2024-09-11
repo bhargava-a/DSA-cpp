@@ -191,6 +191,15 @@ node *dele(node *root,int data){
         //deleting the inorder successor
         root->right=dele(root->right,temp->data);   //or root->left=dele(root->left,temp->data);
     }
+    //If the tree had only one node then return
+    if(root==NULL){
+        return root;
+    }
+    // update height of the current node
+    root->height=1+max(getheight(root->right),getheight(root->left));
+
+    //step 3 : get the balance factor the current node
+    int balance_actor=getbalance(root);
     return root;
 }
 int main() {
