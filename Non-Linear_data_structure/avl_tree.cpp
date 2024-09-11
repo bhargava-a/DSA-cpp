@@ -219,6 +219,7 @@ node *dele(node *root,int data){
         root->right=right_rotation(root->right);
         return left_rotation(root);
     }
+    return root;
 }
 int main() {
     int ch;
