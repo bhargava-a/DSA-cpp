@@ -205,7 +205,11 @@ node *dele(node *root,int data){
     if(balance_actor > 1 && getbalance(root->left) >=){
         return right_rotation(root);
     }
-    
+    //case 2: left right rotation
+    if(balance_actor >1&&getbalance(root->left)<0){
+        root->left=left_rotation(root->left);
+        return right_rotation(root);
+    }
 
     return root;
 }
