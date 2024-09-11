@@ -199,19 +199,26 @@ node *dele(node *root,int data){
     root->height=1+max(getheight(root->right),getheight(root->left));
 
     //step 3 : get the balance factor the current node
-    int balance_actor=getbalance(root);
+    int balance_factor=getbalance(root);
 
     //case 1: Left left rotation
-    if(balance_actor > 1 && getbalance(root->left) >=){
+    if(balance_factor > 1 && getbalance(root->left) >=0){
         return right_rotation(root);
     }
     //case 2: left right rotation
-    if(balance_actor >1&&getbalance(root->left)<0){
+    if(balance_factor >1&&getbalance(root->left)<0){
         root->left=left_rotation(root->left);
         return right_rotation(root);
     }
-
+    // case 3 :right right rotaion
+    if(balance_factor <-1 && getbalance(root->right)<=0)
     return root;
+
+    //case 4:right left rotation
+    if(balance_factor<-1&& getbalance(root->right)>0){
+        root->right=right_rotation(root->right);
+        return left_rotation(root);
+    }
 }
 int main() {
     int ch;
