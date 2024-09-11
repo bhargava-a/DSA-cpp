@@ -200,6 +200,13 @@ node *dele(node *root,int data){
 
     //step 3 : get the balance factor the current node
     int balance_actor=getbalance(root);
+
+    //case 1: Left left rotation
+    if(balance_actor > 1 && getbalance(root->left) >=){
+        return right_rotation(root);
+    }
+    
+
     return root;
 }
 int main() {
