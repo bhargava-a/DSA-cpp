@@ -120,18 +120,31 @@ void fixInsert(node *&root, node *newnode) {
 
 // Function to insert a node into the Binary tree
 node *insert(node *root,node *newnode){
-    if(root==NULL){
-        return newnode;
+        node *y = NULL;
+    node *x = root;
+
+    while (x != NIL) {
+        y = x;
+        if (newnode->data < x->data){
+            x = x->left;
+        }
+        else {
+            x = x->right;
+        }
     }
-    if(newnode->data < root->data){
-        root->left=insert(root->left,newnode);
-    }else if(newnode->data > root->data){
-        root->right=insert(root->right,newnode);
-    } else {
-        // Duplicate data is not allowed in AVL Tree
-        return root;
+
+    newnode->parent = y;
+    if (y == NULL){
+        root = newnode;
     }
-    return root;
+    else if (newnode->data < y->data){
+        y->left = newnode;
+    } 
+    else {
+        y->right = newnode;
+    }
+
+    fixInsert(root, newnode);  // Fix Red-Black Tree properties
 }
 
 // Function to print pre-order elements
