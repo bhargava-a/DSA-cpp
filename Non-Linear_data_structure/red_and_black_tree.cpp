@@ -8,8 +8,15 @@ class node{
     string color;
 };
 node *root=NULL;
-node *NIL=NULL;
+node *NIL=new node();
 
+//Function to values for NIL node(NULL node)
+void ini_NIL(){
+    NIL->color="black";
+    NIL->left=NULL;
+    NIL->right=NULL;
+    NIL->parent=NULL;
+}
 // Function to create a new node
 node *create(){
     node *newnode=new node();
@@ -21,14 +28,7 @@ node *create(){
     newnode->parent=NULL;
     return newnode;
 }
-// Function to height of a node
-int getheight(node *root){
-    
-}
-// Function to getbalance factor of the node
-int getbalance(node *root){
-    
-}
+
 // Function for left rotation
 node *left_rotation(node *x){
     
