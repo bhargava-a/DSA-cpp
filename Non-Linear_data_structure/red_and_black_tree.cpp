@@ -15,8 +15,10 @@ node *create(){
     node *newnode=new node();
     cout<<"Enter data : ";
     cin>>newnode->data;
+    newnode->color="red";
     newnode->left=NULL;
     newnode->right=NULL;
+    newnode->parent=NULL;
     return newnode;
 }
 // Function to height of a node
