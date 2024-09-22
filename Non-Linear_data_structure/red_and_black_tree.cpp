@@ -8,6 +8,7 @@ class node{
     string color;
 };
 node *root=NULL;
+node *NIL=NULL;
 
 // Function to create a new node
 node *create(){
