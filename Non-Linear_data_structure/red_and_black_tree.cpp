@@ -1,6 +1,6 @@
 #include <iostream> // cd C++\DSA-cpp\Non-Linear_data_structure
-#include <algorithm>
 using namespace std;
+
 class node{
     public:
     int data;
@@ -11,7 +11,7 @@ node *root=NULL;
 node *NIL=new node();
 
 //Function to values for NIL node(NULL node)
-void ini_NIL(){
+void init_NIL(){
     NIL->color="black";
     NIL->left=NULL;
     NIL->right=NULL;
@@ -30,7 +30,7 @@ node *create(){
 }
 
 // Function for left rotation
-node *left_rotation(node *x){
+void left_rotation(node *&root,node *x){
     node *y = x->right;
     x->right = y->left;
     if (y->left != NIL){
@@ -52,7 +52,7 @@ node *left_rotation(node *x){
     x->parent = y;
 }
 // Function to right rotation
-node *right_rotation(node *y){
+void right_rotation(node *&root,node *y){
     node *x = y->left;
     y->left = x->right;
     if (x->right != NIL) {
@@ -120,7 +120,7 @@ void fixInsert(node *&root, node *newnode) {
 
 // Function to insert a node into the Binary tree
 node *insert(node *root,node *newnode){
-        node *y = NULL;
+    node *y = NULL;
     node *x = root;
 
     while (x != NIL) {
@@ -185,6 +185,74 @@ node *search(node *root,int key){
         return search(root->right,key);
     }
 }
+// Function to fix Red-Black Tree after deletion
+void fixDelete(node *&root, node *x) {
+    while (x != root && x->color == "black") {
+        if (x == x->parent->left) {
+            node *sibling = x->parent->right;
+            if (sibling->color == "red") {
+                sibling->color = "black";
+                x->parent->color = "red";
+                left_rotation(root, x->parent);
+                sibling = x->parent->right;
+            }
+            if (sibling->left->color == "black" && sibling->right->color == "black") {
+                sibling->color = "red";
+                x = x->parent;
+            } else {
+                if (sibling->right->color == "black") {
+                    sibling->left->color = "black";
+                    sibling->color = "red";
+                    right_rotation(root, sibling);
+                    sibling = x->parent->right;
+                }
+                sibling->color = x->parent->color;
+                x->parent->color = "black";
+                sibling->right->color = "black";
+                left_rotation(root, x->parent);
+                x = root;
+            }
+        } else {
+            node *sibling = x->parent->left;
+            if (sibling->color == "red") {
+                sibling->color = "black";
+                x->parent->color = "red";
+                right_rotation(root, x->parent);
+                sibling = x->parent->left;
+            }
+            if (sibling->left->color == "black" && sibling->right->color == "black") {
+                sibling->color = "red";
+                x = x->parent;
+            } else {
+                if (sibling->left->color == "black") {
+                    sibling->right->color = "black";
+                    sibling->color = "red";
+                    left_rotation(root, sibling);
+                    sibling = x->parent->left;
+                }
+                sibling->color = x->parent->color;
+                x->parent->color = "black";
+                sibling->left->color = "black";
+                right_rotation(root, x->parent);
+                x = root;
+            }
+        }
+    }
+    x->color = "black";
+}
+
+// Helper function to transplant subtrees during deletion
+void rbTransplant(node *&root, node *u, node *v) {
+    if (u->parent == NULL) {
+        root = v;
+    } else if (u == u->parent->left) {
+        u->parent->left = v;
+    } else {
+        u->parent->right = v;
+    }
+    v->parent = u->parent;
+}
+
 
 // finding the min element in right subtree
 node *findmin(node *root){
@@ -193,48 +261,43 @@ node *findmin(node *root){
     }                           //}
     return root;
 }
-//deleting the node 
-node *dele(node *root,int data){
-    if(root==NULL){
-        return root;
+
+// Function to delete a node from the Red-Black Tree
+void rbDelete(node *&root, node *z) {
+    node *y = z;
+    string yOriginalColor = y->color;
+    node *x;
+
+    if (z->left == NIL) {
+        x = z->right;
+        rbTransplant(root, z, z->right);
+    } else if (z->right == NIL) {
+        x = z->left;
+        rbTransplant(root, z, z->left);
+    } else {
+        y = findmin(z->right);
+        yOriginalColor = y->color;
+        x = y->right;
+        if (y->parent == z) {
+            x->parent = y;
+        } else {
+            rbTransplant(root, y, y->right);
+            y->right = z->right;
+            y->right->parent = y;
+        }
+        rbTransplant(root, z, y);
+        y->left = z->left;
+        y->left->parent = y;
+        y->color = z->color;
     }
-    if(data<root->data){
-        root->left=dele(root->left,data);
-    }else if(data>root->data){
-        root->right=dele(root->right,data);
-    }else{
-        //case 1:if node does not have any child nodes
-        if(root->left==NULL&&root->right==NULL){
-            cout << "Node " << root->data << " deleted" << endl;
-            delete root;
-            return NULL;
-        }
-        //case 2:if node has only 1 node,either in left subtree or right subtree
-        if(root->left==NULL){
-            cout<<"Node "<<root->data<<"  deleted"<<endl;
-            node *temp=root->right;
-            delete root;
-            return temp;
-        }
-        if(root->right==NULL){
-            cout << "Node " << root->data << " deleted" << endl;
-            node *temp=root->left;
-            delete root;
-            return temp;
-        }
-        //case 3:if node has 2 child nodes,then
-        //find the inorder successor or pre-decessor of the node
-        //(SMALLEST IN RIGHT SUBTREE OR BIGGEST IN LEFT SUBTREE)
-        node *temp =findmin(root->right);   //or node *temp =findmin(root->left);
-        //changing root node value with inorder's successor
-        root->data=temp->data;     
-        //deleting the inorder successor
-        root->right=dele(root->right,temp->data);   //or root->left=dele(root->left,temp->data);
-    }
+    delete z;
     
-    return root;
+    if (yOriginalColor == "black") {
+        fixDelete(root, x);
+    }
 }
 int main() {
+    init_NIL();  // Initialize the NIL node
     int ch;
     while(1){
         cout<<"\n1.Insert\n2.Delete\n3.Search\n4.Preorder\n5.Inorder\n6.Post-order\n7.Exit\n";
@@ -251,7 +314,13 @@ int main() {
                 int n;
                 cout<<"Enter the node : ";
                 cin>>n;
-                root=dele(root,n);
+                node *z = search(root, n);  // You can implement search if it's not yet done
+                if (z != NIL){
+                    rbDelete(root, z);
+                }
+                else {
+                    cout << "Node not found!\n";
+                }
                 break;
             }
 
