@@ -74,6 +74,50 @@ node *right_rotation(node *y){
     y->parent = x;
 }
 
+// Function to fix Red-Black Tree after insertion
+void fixInsert(node *&root, node *newnode) {
+    while (newnode != root && newnode->parent->color == "red"){
+        if (newnode->parent == newnode->parent->parent->left){
+            node *uncle = newnode->parent->parent->right;
+            
+            if (uncle->color == "red") {
+                // Case 1: Uncle is red
+                newnode->parent->color = "black";
+                uncle->color = "black";
+                newnode->parent->parent->color = "red";
+                newnode = newnode->parent->parent;
+            } else {
+                // Case 2 and 3: Uncle is black
+                if (newnode == newnode->parent->right) {
+                    newnode = newnode->parent;
+                    left_rotation(root, newnode);
+                }
+                newnode->parent->color = "black";
+                newnode->parent->parent->color = "red";
+                right_rotation(root, newnode->parent->parent);
+            }
+        } else {
+            // Symmetric case: parent is right child
+            node *uncle = newnode->parent->parent->left;
+            if (uncle->color == "red") {
+                newnode->parent->color = "black";
+                uncle->color = "black";
+                newnode->parent->parent->color = "red";
+                newnode = newnode->parent->parent;
+            } else {
+                if (newnode == newnode->parent->left) {
+                    newnode = newnode->parent;
+                    right_rotation(root, newnode);
+                }
+                newnode->parent->color = "black";
+                newnode->parent->parent->color = "red";
+                left_rotation(root, newnode->parent->parent);
+            }
+        }
+    }
+    root->color = "black";  // Ensure root is always black
+}
+
 // Function to insert a node into the Binary tree
 node *insert(node *root,node *newnode){
     if(root==NULL){
