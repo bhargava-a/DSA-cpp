@@ -3,9 +3,9 @@
 using namespace std;
 class node{
     public:
-    node *left;
     int data;
-    node *right;
+    node *left,*parent,*right;
+    string color;
 };
 node *root=NULL;
 
