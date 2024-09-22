@@ -23,8 +23,8 @@ node *create(){
     cout<<"Enter data : ";
     cin>>newnode->data;
     newnode->color="red";
-    newnode->left=NULL;
-    newnode->right=NULL;
+    newnode->left=NIL;
+    newnode->right=NIL;
     newnode->parent=NULL;
     return newnode;
 }
