@@ -1,93 +1,92 @@
-#include <iostream> // cd C++\DSA-cpp\Non-Linear_data_structure
+#include <iostream>
 using namespace std;
 
-class node{
-    public:
+class node {
+public:
     int data;
-    node *left,*parent,*right;
+    node* left;
+    node* parent;
+    node* right;
     string color;
 };
-node *root=NULL;
-node *NIL=new node();
 
-//Function to values for NIL node(NULL node)
-void init_NIL(){
-    NIL->color="black";
-    NIL->left=NULL;
-    NIL->right=NULL;
-    NIL->parent=NULL;
+node* root = NULL;
+node* NIL = new node();
+
+// Initialize the NIL node
+void init_NIL() {
+    NIL->color = "black";
+    NIL->left = NIL;
+    NIL->right = NIL;
+    NIL->parent = NULL;
 }
+
 // Function to create a new node
-node *create(){
-    node *newnode=new node();
-    cout<<"Enter data : ";
-    cin>>newnode->data;
-    newnode->color="red";
-    newnode->left=NIL;
-    newnode->right=NIL;
-    newnode->parent=NULL;
+node* create() {
+    node* newnode = new node();
+    cout << "Enter data: ";
+    cin >> newnode->data;
+    newnode->color = "red";
+    newnode->left = NIL;
+    newnode->right = NIL;
+    newnode->parent = NULL;
     return newnode;
 }
 
-// Function for left rotation
-void left_rotation(node *&root,node *x){
-    node *y = x->right;
+// Left rotation
+void left_rotation(node*& root, node* x) {
+    node* y = x->right;
     x->right = y->left;
-    if (y->left != NIL){
+    if (y->left != NIL) {
         y->left->parent = x;
     }
     y->parent = x->parent;
-    
+
     if (x->parent == NULL) {
         root = y;
-    }
-    else if (x == x->parent->left) {
+    } else if (x == x->parent->left) {
         x->parent->left = y;
-    }
-    else {
+    } else {
         x->parent->right = y;
     }
-    
+
     y->left = x;
     x->parent = y;
 }
-// Function to right rotation
-void right_rotation(node *&root,node *y){
-    node *x = y->left;
+
+// Right rotation
+void right_rotation(node*& root, node* y) {
+    node* x = y->left;
     y->left = x->right;
     if (x->right != NIL) {
         x->right->parent = y;
     }
     x->parent = y->parent;
-    
-    if (y->parent == NULL){
+
+    if (y->parent == NULL) {
         root = x;
-    }
-    else if (y == y->parent->right){
+    } else if (y == y->parent->right) {
         y->parent->right = x;
-    }
-    else {
+    } else {
         y->parent->left = x;
     }
-    
+
     x->right = y;
     y->parent = x;
 }
 
-// Function to fix Red-Black Tree after insertion
-void fixInsert(node *&root, node *newnode) {
-    while (newnode != root && newnode->parent->color == "red"){
-        if (newnode->parent == newnode->parent->parent->left){
-            node *uncle = newnode->parent->parent->right;
-            
-            if (uncle->color == "red") {
-                // Case 1: Uncle is red
+// Fix Red-Black Tree after insertion
+void fixInsert(node*& root, node* newnode) {
+    while (newnode->parent != NULL && newnode->parent->color == "red") {
+        if (newnode->parent == newnode->parent->parent->left) {
+            node* uncle = newnode->parent->parent->right;
+
+            if (uncle->color == "red") {  // Case 1: Uncle is red
                 newnode->parent->color = "black";
                 uncle->color = "black";
                 newnode->parent->parent->color = "red";
                 newnode = newnode->parent->parent;
-            } else {
-                // Case 2 and 3: Uncle is black
+            } else {  // Case 2 and 3: Uncle is black
                 if (newnode == newnode->parent->right) {
                     newnode = newnode->parent;
                     left_rotation(root, newnode);
@@ -96,9 +95,8 @@ void fixInsert(node *&root, node *newnode) {
                 newnode->parent->parent->color = "red";
                 right_rotation(root, newnode->parent->parent);
             }
-        } else {
-            // Symmetric case: parent is right child
-            node *uncle = newnode->parent->parent->left;
+        } else {  // Symmetric case: Parent is the right child
+            node* uncle = newnode->parent->parent->left;
             if (uncle->color == "red") {
                 newnode->parent->color = "black";
                 uncle->color = "black";
@@ -115,81 +113,80 @@ void fixInsert(node *&root, node *newnode) {
             }
         }
     }
-    root->color = "black";  // Ensure root is always black
+    root->color = "black";
 }
 
-// Function to insert a node into the Binary tree
-node *insert(node *root,node *newnode){
-    node *y = NULL;
-    node *x = root;
+// Insert a node into the Red-Black Tree
+node* insert(node* root, node* newnode) {
+    node* y = NIL;
+    node* x = root;
 
     while (x != NIL) {
         y = x;
-        if (newnode->data < x->data){
+        if (newnode->data < x->data) {
             x = x->left;
-        }
-        else {
+        } else {
             x = x->right;
         }
     }
 
     newnode->parent = y;
-    if (y == NULL){
+    if (y == NIL) {
         root = newnode;
-    }
-    else if (newnode->data < y->data){
+    } else if (newnode->data < y->data) {
         y->left = newnode;
-    } 
-    else {
+    } else {
         y->right = newnode;
     }
 
-    fixInsert(root, newnode);  // Fix Red-Black Tree properties
+    fixInsert(root, newnode);
+    return root;
 }
 
-// Function to print pre-order elements
-void preorder(node *root){
-    if(root!=NULL){
-        cout<<root->data<<"\t";
+// Print preorder traversal
+void preorder(node* root) {
+    if (root != NIL) {
+        cout << root->data << "\t";
         preorder(root->left);
         preorder(root->right);
     }
 }
 
-// Function to print in-order elements
-void inorder(node *root){
-    if(root!=NULL){
+// Print inorder traversal
+void inorder(node* root) {
+    if (root != NIL) {
         inorder(root->left);
-        cout<<root->data<<"\t";
+        cout << root->data << "\t";
         inorder(root->right);
     }
 }
 
-// Function to print post-order elements
-void postorder(node *root){
-    if(root!=NULL){
+// Print postorder traversal
+void postorder(node* root) {
+    if (root != NIL) {
         postorder(root->left);
         postorder(root->right);
-        cout<<root->data<<"\t";
+        cout << root->data << "\t";
     }
 }
 
-// Function to search for a node in the Binary tree
-node *search(node *root,int key){
-    if(root==NULL||root->data==key){
+// Search for a node in the Red-Black Tree
+node* search(node* root, int key) {
+    if (root == NIL || root->data == key) {
         return root;
     }
-    if(key<root->data){
-        return search(root->left,key);
-    }else{
-        return search(root->right,key);
+    if (key < root->data) {
+        return search(root->left, key);
+    } else {
+        return search(root->right, key);
     }
 }
-// Function to fix Red-Black Tree after deletion
-void fixDelete(node *&root, node *x) {
+
+// Fix the Red-Black Tree after deletion
+void fixDelete(node*& root, node* x) {
     while (x != root && x->color == "black") {
         if (x == x->parent->left) {
-            node *sibling = x->parent->right;
+            node* sibling = x->parent->right;
             if (sibling->color == "red") {
                 sibling->color = "black";
                 x->parent->color = "red";
@@ -213,7 +210,7 @@ void fixDelete(node *&root, node *x) {
                 x = root;
             }
         } else {
-            node *sibling = x->parent->left;
+            node* sibling = x->parent->left;
             if (sibling->color == "red") {
                 sibling->color = "black";
                 x->parent->color = "red";
@@ -241,8 +238,8 @@ void fixDelete(node *&root, node *x) {
     x->color = "black";
 }
 
-// Helper function to transplant subtrees during deletion
-void rbTransplant(node *&root, node *u, node *v) {
+// Transplant subtrees during deletion
+void rbTransplant(node*& root, node* u, node* v) {
     if (u->parent == NULL) {
         root = v;
     } else if (u == u->parent->left) {
@@ -253,20 +250,19 @@ void rbTransplant(node *&root, node *u, node *v) {
     v->parent = u->parent;
 }
 
-
-// finding the min element in right subtree
-node *findmin(node *root){
-    while(root->left!=NULL){    //while(root->right!=NULL){
-        root=root->left;        //root=root->left;
-    }                           //}
+// Find the minimum node in the right subtree
+node* findmin(node* root) {
+    while (root->left != NIL) {
+        root = root->left;
+    }
     return root;
 }
 
-// Function to delete a node from the Red-Black Tree
-void rbDelete(node *&root, node *z) {
-    node *y = z;
+// Delete a node from the Red-Black Tree
+void rbDelete(node*& root, node* z) {
+    node* y = z;
     string yOriginalColor = y->color;
-    node *x;
+    node* x;
 
     if (z->left == NIL) {
         x = z->right;
@@ -290,71 +286,62 @@ void rbDelete(node *&root, node *z) {
         y->left->parent = y;
         y->color = z->color;
     }
-    delete z;
-    
+
     if (yOriginalColor == "black") {
         fixDelete(root, x);
     }
 }
+
 int main() {
-    init_NIL();  // Initialize the NIL node
     int ch;
-    while(1){
-        cout<<"\n1.Insert\n2.Delete\n3.Search\n4.Preorder\n5.Inorder\n6.Post-order\n7.Exit\n";
-        cout<<"Enter your choice : ";
-        cin>>ch;
-        switch(ch){
-            case 1 :{
-                node *newnode=create();  //create a newnode 
-                root=insert(root,newnode);  //Insert a newnode into the binary tree
-                break;
-            }
+    node* temp;
+    init_NIL();
 
-            case 2 :{
-                int n;
-                cout<<"Enter the node : ";
-                cin>>n;
-                node *z = search(root, n);  // You can implement search if it's not yet done
-                if (z != NIL){
-                    rbDelete(root, z);
-                }
-                else {
-                    cout << "Node not found!\n";
-                }
-                break;
-            }
+    do {
+        cout << "\n1.Insert\n2.Search\n3.Delete\n4.Preorder\n5.Inorder\n6.Postorder\n0.Exit\n";
+        cout << "Enter choice: ";
+        cin >> ch;
 
-            case 3 :{
+        switch (ch) {
+            case 1:
+                temp = create();
+                root = insert(root, temp);
+                break;
+            case 2:
                 int key;
-                cout<<"Enter the node to be searched : ";
-                cin>>key;
-                node *found=NULL;
-                found=search(root,key);
-                if(found!=NULL){
-                    cout<<"Node found!!!!!woohooo"<<endl;
-                }else{
-                    cout<<"Node not found"<<endl;
+                cout << "Enter key to search: ";
+                cin >> key;
+                temp = search(root, key);
+                if (temp != NIL) {
+                    cout << "Element found: " << temp->data << endl;
+                } else {
+                    cout << "Element not found." << endl;
                 }
                 break;
-            }
-            case 4:{
-                cout<<"Preorder : ";
+            case 3:
+                cout << "Enter key to delete: ";
+                cin >> key;
+                temp = search(root, key);
+                if (temp != NIL) {
+                    rbDelete(root, temp);
+                } else {
+                    cout << "Element not found." << endl;
+                }
+                break;
+            case 4:
+                cout << "Preorder traversal: \n";
                 preorder(root);
                 break;
-            }
-            case 5:{
-                cout<<"Inorder : ";
+            case 5:
+                cout << "Inorder traversal: \n";
                 inorder(root);
                 break;
-            }
-            case 6:{
-                cout<<"Postorder : ";
+            case 6:
+                cout << "Postorder traversal: \n";
                 postorder(root);
                 break;
-            }
-            case 7 :exit(0);
-            default:cout<<"Invalid Choice"<<endl;
         }
-    }
+    } while (ch != 0);
+
     return 0;
 }
