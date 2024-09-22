@@ -53,7 +53,25 @@ node *left_rotation(node *x){
 }
 // Function to right rotation
 node *right_rotation(node *y){
+    node *x = y->left;
+    y->left = x->right;
+    if (x->right != NIL) {
+        x->right->parent = y;
+    }
+    x->parent = y->parent;
     
+    if (y->parent == NULL){
+        root = x;
+    }
+    else if (y == y->parent->right){
+        y->parent->right = x;
+    }
+    else {
+        y->parent->left = x;
+    }
+    
+    x->right = y;
+    y->parent = x;
 }
 
 // Function to insert a node into the Binary tree
