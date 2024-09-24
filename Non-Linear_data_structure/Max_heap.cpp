@@ -82,9 +82,9 @@ int main(){
     MaxHeap maxi;
     while(1){
         cout<<"\n1.Insert"
-          "\n2.Delete"
-          "\n3.Print"
-          "\n4.exit(0)"<<endl;
+              "\n2.Delete"
+              "\n3.Print"
+              "\n4.exit(0)"<<endl;
         cout<<"Enter your choice : ";
         cin>>ch;
         switch(ch){
