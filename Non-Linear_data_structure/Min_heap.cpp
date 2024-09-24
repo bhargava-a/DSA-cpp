@@ -23,8 +23,21 @@ class MinHeap{
             }
         }
 
-        void heapify_Down(){
-            
+        void heapify_Down(int index){
+            int left=2*index+1;
+            int right=2*index+2;
+            int smallest=index;
+
+            if(left<array.size() && array[left]<array[smallest]){
+                smallest=left;
+            }
+            if(right<array.size() && array[right]<array[smallest]){
+                smallest=right;
+            }
+            if(smallest!=index){
+                swapi(&array[smallest],&array[index]);
+                heapify_Down(smallest);
+            }
         }
     public:
         //insert an element into heap
@@ -33,8 +46,13 @@ class MinHeap{
             heapify(array.size()-1);
         }
         //delete the root element in heap
-        int  extract_max(){
-            
+        int  extract_min(){
+            int smallest=array[0];
+            array[0]=array.back();
+            array.pop_back();
+            heapify_Down(0);
+
+            return smallest;
         }
 
         //Function to display the max heap array
@@ -70,7 +88,7 @@ int main(){
                 break;
             }
             case 2:{
-                cout<<"the deleted MAximum node : "<<mini.extract_max();
+                cout<<"the deleted MAximum node : "<<mini.extract_min();
                 break;
             }
             case 3:mini.print();break;
