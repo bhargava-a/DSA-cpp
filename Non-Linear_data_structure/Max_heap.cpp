@@ -84,7 +84,7 @@ int main(){
         cout<<"\n1.Insert"
           "\n2.Delete"
           "\n3.Print"
-          "\n4.exit(0)";
+          "\n4.exit(0)"<<endl;
         cout<<"Enter your choice : ";
         cin>>ch;
         switch(ch){
@@ -96,7 +96,7 @@ int main(){
                 break;
             }
             case 2:{
-                cout<<maxi.extract_max();
+                cout<<"the deleted MAximum node : "<<maxi.extract_max();
                 break;
             }
             case 3:maxi.print();break;
