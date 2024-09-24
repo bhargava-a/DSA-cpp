@@ -5,11 +5,27 @@ using namespace std;
 class MaxHeap{
     private:
         vector<int> array;
-    
+
+        void swapi(int *x,int *y){
+            int temp=*x;
+            *x=*y;
+            *y=temp;
+        }
+        
+        void heapify(int index){
+            if(index==0){
+                return;
+            }
+            int parent=(index-1)/2;
+            if(array[index]>array[parent]){
+                swapi(&array[index],&array[parent]);
+                heapify(parent);
+            }
+        }
     public:
         void insert(int data){
             array.push_back(data);
-
+            heapify(array.size()-1);
         }
 };
 
