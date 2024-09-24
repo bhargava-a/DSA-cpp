@@ -63,7 +63,18 @@ class MaxHeap{
             return max_element;
         }
 
-        
+        //Function to display the max heap array
+        void print(){
+            if(array.size()==0){
+                cout<<"The Max heap is empty";
+            }else{
+                cout<<"THE MAX HEAP : ";
+                for(int i=0;i<array.size();i++){
+                    cout<<array[i]<<"\t";
+                }
+                cout<<endl;
+            }
+        }
 };
 
 int main(){
