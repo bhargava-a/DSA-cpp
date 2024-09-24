@@ -12,8 +12,15 @@ class MinHeap{
             *y=temp;
         }
 
-        void heapify(){
-            
+        void heapify(int index){
+            if(index==0){
+                return;
+            }
+            int parent=(index-1)/2;
+            if(array[index]<array[parent]){
+                swapi(&array[index],&array[parent]);
+                heapify(parent);
+            }
         }
 
         void heapify_Down(){
@@ -21,8 +28,9 @@ class MinHeap{
         }
     public:
         //insert an element into heap
-        void insert(){
-            
+        void insert(int data){
+            array.push_back(data);
+            heapify(array.size()-1);
         }
         //delete the root element in heap
         int  extract_max(){
