@@ -115,7 +115,7 @@ node *dele(node *root,int data){
         root->right=dele(root->right,temp->data);   //or root->left=dele(root->left,temp->data);
     }
     return root;
-
+}
 };
 
 
