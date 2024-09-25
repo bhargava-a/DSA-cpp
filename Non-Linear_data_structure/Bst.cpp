@@ -125,6 +125,7 @@ node *dele(node *root,int data){
 
 int main() {
     int ch;
+    bst binary_search_tree;
     while(1){
         cout<<"\n1.Insert\n2.Delete\n3.Search\n4.Preorder\n5.Inorder\n6.Post-order\n7.Exit\n";
         cout<<"Enter your choice : ";
