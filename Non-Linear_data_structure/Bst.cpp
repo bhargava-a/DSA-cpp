@@ -7,7 +7,8 @@ class node{
     node *right;
 };
 node *root=NULL;
-
+class bst{
+private:
 // Function to create a new node
 node *create(){
     node *newnode=new node();
@@ -17,7 +18,14 @@ node *create(){
     newnode->right=NULL;
     return newnode;
 }
-
+// finding the min element in right subtree
+node *findmin(node *root){
+    while(root->left!=NULL){    //while(root->right!=NULL){
+        root=root->left;        //root=root->left;
+    }                           //}
+    return root;
+}
+public:
 // Function to insert a node into the Binary tree
 node *insert(node *root,node *newnode){
     if(root==NULL){
@@ -30,7 +38,6 @@ node *insert(node *root,node *newnode){
     }
     return root;
 }
-
 // Function to print pre-order elements
 void preorder(node *root){
     if(root!=NULL){
@@ -68,14 +75,6 @@ node *search(node *root,int key){
     }else{
         return search(root->right,key);
     }
-}
-
-// finding the min element in right subtree
-node *findmin(node *root){
-    while(root->left!=NULL){    //while(root->right!=NULL){
-        root=root->left;        //root=root->left;
-    }                           //}
-    return root;
 }
 //deleting the node 
 node *dele(node *root,int data){
@@ -116,7 +115,14 @@ node *dele(node *root,int data){
         root->right=dele(root->right,temp->data);   //or root->left=dele(root->left,temp->data);
     }
     return root;
-}
+
+};
+
+
+
+
+
+
 int main() {
     int ch;
     while(1){
