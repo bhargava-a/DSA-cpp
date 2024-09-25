@@ -132,8 +132,8 @@ int main() {
         cin>>ch;
         switch(ch){
             case 1 :{
-                node *newnode=create();  //create a newnode 
-                root=insert(root,newnode);  //Insert a newnode into the binary tree
+                node *newnode=binary_search_tree.create();  //create a newnode 
+                root=binary_search_tree.insert(root,newnode);  //Insert a newnode into the binary tree
                 break;
             }
 
@@ -141,7 +141,7 @@ int main() {
                 int n;
                 cout<<"Enter the node : ";
                 cin>>n;
-                root=dele(root,n);
+                root=binary_search_tree.dele(root,n);
                 break;
             }
 
@@ -150,7 +150,7 @@ int main() {
                 cout<<"Enter the node to be searched : ";
                 cin>>key;
                 node *found=NULL;
-                found=search(root,key);
+                found=binary_search_tree.search(root,key);
                 if(found!=NULL){
                     cout<<"Node found!!!!!woohooo"<<endl;
                 }else{
@@ -160,17 +160,17 @@ int main() {
             }
             case 4:{
                 cout<<"Preorder : ";
-                preorder(root);
+                binary_search_tree.preorder(root);
                 break;
             }
             case 5:{
                 cout<<"Inorder : ";
-                inorder(root);
+                binary_search_tree.inorder(root);
                 break;
             }
             case 6:{
                 cout<<"Postorder : ";
-                postorder(root);
+                binary_search_tree.postorder(root);
                 break;
             }
             case 7 :exit(0);
