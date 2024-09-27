@@ -8,16 +8,16 @@ class Heap{
             *x=*y;
             *y=temp;
         }
-
-        void MaxHeapify(vector<int> arr,int n,int index){
+         // Function to maintain the max heap property
+        void MaxHeapify(vector<int> &arr,int n,int index){
             int largest = index;
-            int left=2*index;
-            int right=2*index+1;
+            int left=2*index+1;
+            int right=2*index+2;
 
-            while(left<=n && arr[left]>arr[largest]){
+            while(left<n && arr[left]>arr[largest]){
                 largest=left;
             }
-            while(right<=n && arr[right]>arr[largest]){
+            while(right<n && arr[right]>arr[largest]){
                 largest=right;
             }
             if(largest!=index){
@@ -27,13 +27,20 @@ class Heap{
         }
     
     public:
-        void HeapSort(vector<int> arr,int n,int index){
-            for(int i=n/2;i>=1;i--){
+        void HeapSort(vector<int> &arr){
+            int n=arr.size();
+            for(int i=(n/2)-1;i>=0;i--){
                 MaxHeapify(arr,n,i);
             }
-            for(int i=n;i>=1;i--){
-                change(&arr[i],&arr[index]);
-                MaxHeapify(arr,n,1);
+            for(int i=n-1;i>0;i--){
+                change(&arr[0],&arr[i]);
+                MaxHeapify(arr,i,0);
+            }
+        }
+
+        void display(vector<int> &arr){
+            for(int i=0;i<arr.size();i++){
+                cout<<arr[i]<<"\t";
             }
         }
 };
@@ -41,14 +48,13 @@ int main(){
     int n;
     cout<<"Enter the size : ";
     cin>>n;
-    vector<int> arr[n];
+    vector<int> arr(n);
     cout<<"Enter the elements : ";
     for(int i=0;i<n;i++){
-        int x;
-        cin>>x;
-        arr[i].push_back(x);
+        cin>>arr[i];
     }
     Heap h;
-    h.HeapSort(arr,n,(n/2)+1);
+    h.HeapSort(arr);
+    h.display(arr);
     return 0;
 }
