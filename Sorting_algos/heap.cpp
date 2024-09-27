@@ -26,7 +26,16 @@ class Heap{
             }
         }
     
-    
+    public:
+        void HeapSort(vector<int> arr,int n,int index){
+            for(int i=n/2;i>=1;i--){
+                MaxHeapify(arr,n,i);
+            }
+            for(int i=n;i>=1;i--){
+                change(&arr[i],&arr[index]);
+                MaxHeapify(arr,n,1);
+            }
+        }
 };
 int main(){
     
