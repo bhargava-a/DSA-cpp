@@ -38,6 +38,17 @@ class Heap{
         }
 };
 int main(){
-    
+    int n;
+    cout<<"Enter the size : ";
+    cin>>n;
+    vector<int> arr[n];
+    cout<<"Enter the elements : ";
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        arr[i].push_back(x);
+    }
+    Heap h;
+    h.HeapSort(arr,n,(n/2)+1);
     return 0;
 }
