@@ -32,16 +32,14 @@ int main(){
             cin>>adj[i][j];
         }
     }
-    //created a boolean queue for tracking the visited nodes
-    vector<bool> visited(vertices,false);
 
     //calling for BFS for each component of the graph
     for(int i=0;i<vertices;i++){
-        if(!visited[i]){
-            cout<<"BFS staring from vertex "<<i<<": ";
-            BFS(i,adj,visited);
-            cout<<endl;
-        }
+        //created a boolean queue for tracking the visited nodes
+        vector<bool> visited(vertices,false);
+        cout<<"BFS staring from vertex "<<i<<": ";
+        BFS(i,adj,visited);
+        cout<<endl;
     }
     return 0;
 }
