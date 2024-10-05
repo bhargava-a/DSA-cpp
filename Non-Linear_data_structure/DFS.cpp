@@ -2,6 +2,7 @@
 #include<stack>
 #include<vector>
 using namespace std;
+
 int main(){
     int vertices;
     cout<<"Enter the no of vertices : ";
@@ -16,7 +17,8 @@ int main(){
     for(int i=0;i<vertices;i++){
         vector<bool> visited(vertices,false);
         cout<<"DFS staring from vertex "<<i<<": ";
-        
+        DFS(i,adj,visited);
+        cout<<endl;
     }
     return 0;
 }
