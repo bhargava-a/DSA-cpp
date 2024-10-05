@@ -7,6 +7,18 @@ void BFS(int start_vertex,vector<vector<int>>& adj,vector<bool>& visited){
     q.push(start_vertex);
     visited[start_vertex]=true;
     
+    while(!q.empty()){
+        int current_vertex=q.front();
+        q.pop();
+        cout<<current_vertex<<"\t";
+
+        for(int i=0;i<adj[current_vertex].size();i++){
+            if(adj[current_vertex][i] == 1 && (!visited[i])){
+                q.push(i);
+                visited[i]=true;
+            }
+        }
+    }
 }
 int main(){
     int vertices;
