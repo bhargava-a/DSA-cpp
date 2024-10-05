@@ -2,7 +2,10 @@
 #include<vector>
 #include<queue>
 using namespace std;
-void BFS(){
+void BFS(int start_vertex,vector<vector<int>>& adj,vector<bool>& visited){
+    queue<int> q;
+    q.push(start_vertex);
+    visited[start_vertex]=true;
     
 }
 int main(){
