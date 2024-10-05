@@ -2,7 +2,24 @@
 #include<stack>
 #include<vector>
 using namespace std;
+void DFS(int start_vertex,vector<vector<int>>& adj,vector<bool>& visited){
+    stack<int> s;
+    s.push(start_vertex);
+    visited[start_vertex]=true;
 
+    while(!s.empty()){
+        int current_vertex=s.top();
+        s.pop();
+        cout<<current_vertex<<"\t";
+
+        for(int i=0;i<adj[current_vertex].size();i++){
+            if(adj[current_vertex][i] == 1 && (!visited[i])){
+                s.push(i);
+                visited[i]=true;
+            }
+        }
+    }
+}
 int main(){
     int vertices;
     cout<<"Enter the no of vertices : ";
