@@ -8,3 +8,5 @@ c++ programs of linear and non linear data structues using oops.
 cd C++\DSA-cpp\Non-Linear_data_structure
 <br>
 cd C++\DSA-cpp\Sorting_algos
+<br>
+cd C++\DSA-cpp\algos
