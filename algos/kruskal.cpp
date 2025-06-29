@@ -1,4 +1,5 @@
 #include<iostream>
+#include<String>
 #include<vector>
 #include<climits>
 using namespace std;
